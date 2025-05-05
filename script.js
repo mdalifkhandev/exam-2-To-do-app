@@ -150,7 +150,7 @@ clearAllBtn.addEventListener('click', () => {
     const confirmClear = confirm("Are you sure you want to clear all tasks? This action cannot be undone.");
     if(confirmClear){
         taskArray.splice(0,taskArray.length)
-        
+        displayData()
     }
     
 })
