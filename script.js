@@ -67,7 +67,7 @@ const displayData = () => {
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">details</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <button class="btn btn-danger" onclick="deleteTask(index)"> Delete </button>
+                        <button class="btn btn-danger" onclick="deleteTask(${index})"> Delete </button>
                         <p class="text-center text-success bg-dark">Complited !</p>
                     </div>
                 </div>
@@ -115,3 +115,5 @@ addBtn.addEventListener('click', () => {
     displayData()
 
 })
+
+
