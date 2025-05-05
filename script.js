@@ -6,6 +6,7 @@ let taskArray = []
 let activeIndex;
 let nameWarning= document.getElementById('warName')
 let detailsWarning= document.getElementById('warDetails')
+let clearAllBtn = document.getElementById('clearbtn')
 
 // Delete task function
 const deleteTask = (indes) => {
@@ -109,7 +110,7 @@ const displayData = () => {
     })
 }
 
-
+//add task function
 addBtn.addEventListener('click', () => {
 
 
@@ -136,8 +137,20 @@ addBtn.addEventListener('click', () => {
         displayData()
     }
 
-   
+   if(taskArray.length > 2){
+        clearAllBtn.classList.remove('d-none')
+    }
 
 })
 
 
+// Clear all task function
+
+clearAllBtn.addEventListener('click', () => {
+    const confirmClear = confirm("Are you sure you want to clear all tasks? This action cannot be undone.");
+    if(confirmClear){
+        taskArray.splice(0,taskArray.length)
+        
+    }
+    
+})
