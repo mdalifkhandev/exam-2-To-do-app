@@ -4,6 +4,8 @@ let addBtn = document.getElementById('addbtn')
 let updateBtn = document.getElementById('updatebtn')
 let taskArray = []
 let activeIndex;
+let nameWarning= document.getElementById('warName')
+let detailsWarning= document.getElementById('warDetails')
 
 // Delete task function
 const deleteTask = (indes) => {
@@ -25,17 +27,28 @@ const editTask = (index) => {
 
 // Update task function
 updateBtn.addEventListener('click', () => {
-    if (taskName.value == '' || taskDetails.value == '' || activeIndex == undefined) {
-        alert('Please fill all fields')
+
+    if (taskName.value == '') {
+        nameWarning.innerText = 'Please fill the name field !!!!'
         return
     }
-    taskArray[activeIndex].name = taskName.value
-    taskArray[activeIndex].details = taskDetails.value
-    taskName.value = ''
-    taskDetails.value = ''
-    displayData()
-    updateBtn.classList.add('d-none')
-    addBtn.classList.remove('d-none')
+    if (taskDetails.value == '') {
+        detailsWarning.innerText = 'Please fill the name field !!!!'
+        return
+    }
+
+    if(taskDetails.value && taskName.value){
+        nameWarning.innerText = ''
+        detailsWarning.innerText = ''
+
+        taskArray[activeIndex].name = taskName.value
+        taskArray[activeIndex].details = taskDetails.value
+        taskName.value = ''
+        taskDetails.value = ''
+        displayData()
+        updateBtn.classList.add('d-none')
+        addBtn.classList.remove('d-none')
+    }
 
 
 })
@@ -100,19 +113,30 @@ const displayData = () => {
 addBtn.addEventListener('click', () => {
 
 
-    if (taskName.value == '' || taskDetails.value == '') {
-        alert('Please fill all fields')
+    if (taskName.value == '') {
+        nameWarning.innerText = 'Please fill the name field !!!!'
+        return
+    }
+    if (taskDetails.value == '') {
+        detailsWarning.innerText = 'Please fill the name field !!!!'
         return
     }
 
-    let task = {
-        name: taskName.value,
-        details: taskDetails.value
+    if(taskDetails.value && taskName.value){
+        detailsWarning.innerText = ''
+        nameWarning.innerText = ''
+
+        let task = {
+            name: taskName.value,
+            details: taskDetails.value
+        }
+        taskArray.push(task)
+        taskName.value = ''
+        taskDetails.value = ''
+        displayData()
     }
-    taskArray.push(task)
-    taskName.value = ''
-    taskDetails.value = ''
-    displayData()
+
+   
 
 })
 
